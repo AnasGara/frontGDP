@@ -1,0 +1,140 @@
+<div class="container-fluid">
+  <div class="row align-items-center vh-100">
+    <!-- Image Section -->
+    <div class="col-lg-4 d-none d-lg-block p-0">
+      <div class="image-container">
+        <img
+          src=".././../../assets/bg.avif"
+          alt="Signup Image"
+          class="img-fluid full-height"
+        />
+        <div class="overlay"></div>
+      </div>
+    </div>
+
+    <!-- Form Section -->
+    <div class="col-lg-8 col-12 d-flex align-items-center">
+      <div class="w-100 px-5">
+        <div>
+          <h2 class="">Welcome to GDP</h2>
+          <span style="color: #888888"> Fill out the form to register</span>
+        </div>
+        <br />
+        <br />
+        <br />
+        <form>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <div class="input-group">
+              <input
+                type="email"
+                [(ngModel)]="email"
+                name="email"
+                class="form-control"
+                id="email"
+                placeholder="Email address"
+                required
+              />
+              <span class="input-group-text">
+                <i class="fas fa-id-card"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <div class="input-group">
+              <input
+                type="password"
+                name="password"
+                class="form-control"
+                [(ngModel)]="password"
+                placeholder="******"
+                required
+
+              />
+              <span class="input-group-text">
+                <i class="fas fa-lock"></i>
+              </span>
+            </div>
+            <div
+              class="error-message"
+              *ngIf="password.length > 0 && !isPasswordValid();  "
+            >
+              Stronger password that includes one letter and one number is recommended.
+            </div>
+
+          </div>
+
+          <div class="mb-3">
+            <label for="confirmPassword" class="form-label"
+              >Confirm Password</label
+            >
+            <div class="input-group">
+              <input
+              type="password"
+              name="confirmPassword"
+              class="form-control"
+              [(ngModel)]="confirmPassword"
+              placeholder="******"
+              required
+
+              />
+              <span class="input-group-text">
+                <i class="fas fa-lock"></i>
+              </span>
+            </div>
+            <div
+            class="error-message"
+            *ngIf="confirmPassword.length > 0 && confirmPassword!=password;  "
+          >
+            Passwords must match.
+          </div>
+
+          </div>
+          <div class="mb-3 form-check">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="terms"
+              [checked]="termsAccepted"
+              (change)="termsAccepted = !termsAccepted"
+            />
+            <label class="form-check-label" for="terms">
+              I agree to the
+              <a
+                target="_blank"
+                href="https://drive.google.com/file/d/1EBKsOHX6JmWmwhQ4nbzg6sXwVwbkTN0l/view"
+                class="link-primary"
+                >terms and conditions</a
+              >
+            </label>
+          </div>
+
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-md-10">
+                <div class="row">
+                  <small
+                    >Already have an account?
+                    <a routerLink="/login">Login</a></small
+                  >
+                </div>
+              </div>
+              <div class="col-md-2 text-end">
+                <button
+                  type="submit"
+                  class="btn btn-primary w-100"
+                  (click)="createAccount()"
+                  [disabled]="!termsAccepted "
+                >
+                  Sign Up
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
