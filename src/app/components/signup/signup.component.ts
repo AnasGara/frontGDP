@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AnimationFrameScheduler } from 'rxjs/internal/scheduler/AnimationFrameScheduler';
 import { HttpClientModule } from '@angular/common/http';
 import { UserService } from 'src/app/services/user.service';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -9,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router:Router) {}
 
   password: string = '';
   confirmPassword: string = '';
@@ -62,6 +63,7 @@ export class SignupComponent implements OnInit {
       (response) => {
         console.log('User registered successfully:', response);
         alert('User account created successfully!');
+        this.router.navigate(['/login']);
       },
       (error) => {
         console.error('Error registering user:', error);
